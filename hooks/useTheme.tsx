@@ -1,10 +1,11 @@
 import { useContext } from "react";
-import { ThemeContext, themes } from "../context/themeContext";
+import { Colors } from "@/constansts/Colors";
+import { ThemeContext } from "@/context/themeContext";
 
 export function useTheme() {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
-  const colors = themes[theme];
+  const colors = Colors[theme];
 
   return {
     theme,

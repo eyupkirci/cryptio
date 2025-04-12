@@ -1,22 +1,5 @@
 import { createContext, FC, ReactNode, useState } from "react";
 
-export const themes = {
-  light: {
-    text: "#000000",
-    contrast: "#FFFFFF",
-    backgorund: "#FFFFFF",
-    border: "#000000",
-    light: "",
-  },
-  dark: {
-    text: "#FFFFFF",
-    contrast: "#000000",
-    backgorund: "#000000",
-    border: "#FFFFFF",
-    light: "",
-  },
-};
-
 type Theme = "light" | "dark";
 
 interface ThemeContext {

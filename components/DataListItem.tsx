@@ -1,8 +1,13 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Coin } from "../context/dataContext";
+import { useTheme } from "@/hooks/useTheme";
 
 export const DataListItem = ({ data }: { data: Coin }) => {
+  const { theme, colors } = useTheme();
+
+  const textColor = colors.text;
+  const backgroundColor = colors.background;
   return (
     <View
       style={{
@@ -20,7 +25,6 @@ export const DataListItem = ({ data }: { data: Coin }) => {
           style={{
             alignSelf: "center",
             borderRadius: 50,
-
             overflow: "hidden",
           }}
         >
@@ -33,13 +37,15 @@ export const DataListItem = ({ data }: { data: Coin }) => {
           />
         </View>
         <View>
-          <Text>{data.name}</Text>
-          <Text>{data.symbol}</Text>
+          <Text style={{ color: textColor }}>{data.name}</Text>
+          <Text style={{ color: textColor }}>{data.symbol}</Text>
         </View>
       </View>
       <View style={{ flex: 1, justifyContent: "flex-end" }}>
-        <Text style={{ textAlign: "right" }}>{data.current_price}</Text>
-        <Text style={{ textAlign: "right" }}>
+        <Text style={{ textAlign: "right", color: textColor }}>
+          {data.current_price}
+        </Text>
+        <Text style={{ textAlign: "right", color: textColor }}>
           {data.price_change_24h.toFixed(2)}
         </Text>
       </View>
