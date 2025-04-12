@@ -1,15 +1,17 @@
 import React from "react";
 import {
-  Text,
   View,
   StyleSheet,
   // ActivityIndicator
 } from "react-native";
 import { Coin } from "@/context/dataContext";
+import Typography from "./Typograpy";
+import { useTheme } from "@/hooks/useTheme";
 // import useFetch from "@/hooks/useFetch";
 
 const Chart = ({ data }: { data: Coin }) => {
-  //TODO: add chart component
+  const { colors } = useTheme();
+
   // const {
   //   data: response,
   //   isLoading,
@@ -33,8 +35,8 @@ const Chart = ({ data }: { data: Coin }) => {
   // // }
 
   return (
-    <View style={styles.container}>
-      <Text>Chart here</Text>
+    <View style={[styles.container, { borderColor: colors.text }]}>
+      <Typography>Chart here</Typography>
     </View>
   );
 };
@@ -48,7 +50,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 10,
     borderRadius: 4,
-    backgroundColor: "#f0f0f0",
+    borderWidth: 1,
   },
   errorText: {
     color: "red",

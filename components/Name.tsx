@@ -1,19 +1,14 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
 import { Coin } from "@/context/dataContext";
-import { useTheme } from "@/hooks/useTheme";
+import Typography from "./Typograpy";
 
 const Name = ({ data }: { data: Coin }) => {
-  const { colors } = useTheme();
-  const textColor = colors.text;
-
   return (
-    <View style={{ flex: 1, justifyContent: "flex-end" }}>
+    <View style={styles.container}>
       <View>
-        <Text style={[styles.name, { color: textColor }]}>{data.name}</Text>
-        <Text style={[styles.symbol, { color: textColor }]}>
-          {data.symbol.toUpperCase()}
-        </Text>
+        <Typography variant="subtitle">{data.name}</Typography>
+        <Typography variant="caption">{data.symbol.toUpperCase()}</Typography>
       </View>
     </View>
   );
@@ -22,6 +17,5 @@ const Name = ({ data }: { data: Coin }) => {
 export default Name;
 
 const styles = StyleSheet.create({
-  name: { fontSize: 16, fontWeight: "500" },
-  symbol: { fontSize: 12 },
+  container: { flex: 1, justifyContent: "flex-end" },
 });

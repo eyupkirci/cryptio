@@ -9,8 +9,6 @@ interface SearchProps {
 
 const Search: React.FC<SearchProps> = ({ onSearch }) => {
   const { colors } = useTheme();
-  const backgroundColor = colors.background;
-  const textColor = colors.text;
   const [searchText, setSearchText] = useState("");
 
   const handleSearchTextChange = (text: string) => {
@@ -19,18 +17,18 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: backgroundColor }]}>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
       {!searchText && (
         <Feather
           name="search"
           size={24}
-          color={textColor}
-          style={{ position: "absolute", right: 20, top: 18 }}
+          color={colors.text}
+          style={styles.image}
         />
       )}
       <TextInput
-        placeholderTextColor={textColor}
-        style={[styles.input, { color: textColor, borderColor: textColor }]}
+        placeholderTextColor={colors.text}
+        style={[styles.input, { color: colors.text, borderColor: colors.text }]}
         placeholder="Search..."
         value={searchText}
         onChangeText={handleSearchTextChange}
@@ -52,6 +50,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     borderRadius: 5,
   },
+  image: { position: "absolute", right: 20, top: 18 },
 });
 
 export default Search;

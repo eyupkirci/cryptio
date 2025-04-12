@@ -8,10 +8,8 @@ import Chart from "./Chart";
 
 export const DataListItem = ({ data }: { data: Coin }) => {
   const { colors } = useTheme();
-  const backgroundColor = colors.background;
-  const textColor = colors.text;
   return (
-    <View style={[styles.container, { backgroundColor: backgroundColor }]}>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
       <View style={styles.imageWrapper}>
         <View style={styles.imageContainer}>
           <Image style={styles.image} source={{ uri: data.image }} />

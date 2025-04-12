@@ -1,13 +1,14 @@
 import React from "react";
 import { View, Text, Switch, StyleSheet } from "react-native";
 import { useTheme } from "../hooks/useTheme";
+import Typography from "./Typograpy";
 
 const Header = () => {
   const { theme, toggleTheme, colors } = useTheme();
 
   return (
     <View style={[styles.header, { backgroundColor: colors.background }]}>
-      <Text style={[styles.title, { color: colors.text }]}>Cryptio</Text>
+      <Typography variant="title">Cryptio</Typography>
       <Switch value={theme === "dark"} onValueChange={toggleTheme} />
     </View>
   );
@@ -19,10 +20,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     flexDirection: "row",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
   },
 });
 

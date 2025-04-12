@@ -11,12 +11,13 @@ import {
   StyleSheet,
 } from "react-native";
 import { useState, useCallback } from "react";
+import { EmtpyDataComponent } from "@/components/EmptyListComponent";
+import { Coin } from "@/context/dataContext";
 
 export default function Index() {
   const { coins, isLoading, error, refetch } = useData();
   const { colors } = useTheme();
-  const textColor = colors.text;
-  const backgroundColor = colors.background;
+
   const [searchText, setSearchText] = useState("");
   const [filteredCoins, setFilteredCoins] = useState(coins);
 
@@ -28,8 +29,6 @@ export default function Index() {
           coin.name.toLowerCase().includes(text.toLowerCase())
         );
         setFilteredCoins(filtered);
-      } else {
-        setFilteredCoins(coins);
       }
     },
     [coins]
@@ -37,7 +36,7 @@ export default function Index() {
 
   if (isLoading) {
     return (
-      <View style={[styles.container, { backgroundColor: backgroundColor }]}>
+      <View style={[styles.container, { backgroundColor: colors.background }]}>
         <ActivityIndicator size="large" color="#0000ff" />
       </View>
     );
@@ -45,20 +44,20 @@ export default function Index() {
 
   if (error) {
     return (
-      <View style={[styles.container, { backgroundColor: backgroundColor }]}>
-        <Text style={{ color: textColor }}>Error: {error}</Text>
+      <View style={[styles.container, { backgroundColor: colors.background }]}>
+        <Text style={{ color: colors.text }}>Error: {error}</Text>
       </View>
     );
   }
 
   return (
-    <View style={[styles.container, { backgroundColor: backgroundColor }]}>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
       <Search onSearch={handleSearch} />
       <FlatList
         data={searchText ? filteredCoins : coins}
-        keyExtractor={(coin: any) => coin?.id}
-        renderItem={({ item }: { item: any }) => <DataListItem data={item} />}
-        ListEmptyComponent={<Text style={{ color: textColor }}>No Data</Text>}
+        keyExtractor={(coin: Coin) => coin.id}
+        renderItem={({ item }: { item: Coin }) => <DataListItem data={item} />}
+        ListEmptyComponent={<EmtpyDataComponent />}
         initialNumToRender={10}
         updateCellsBatchingPeriod={10}
         refreshControl={
