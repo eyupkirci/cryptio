@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 
-interface Coin {
+export interface Coin {
   id: string;
   symbol: string;
   name: string;
@@ -39,6 +39,7 @@ interface DataContextProps {
   coins: Coin[];
   isLoading: boolean;
   error: string | null;
+  refetch: () => void;
 }
 
 export const API_URL =
@@ -48,6 +49,7 @@ export const DataContext = createContext<DataContextProps>({
   coins: [],
   isLoading: false,
   error: null,
+  refetch: () => {},
 });
 
 interface DataProviderProps {
@@ -61,32 +63,39 @@ export const DataProvider: React.FC<DataProviderProps> = ({
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      try {
-        const response = await fetch(API_URL);
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(API_URL);
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data: Coin[] = await response.json();
-        setCoins(data);
-        setError(null);
-      } catch (e: any) {
-        setError(e.message);
-        setCoins([]);
-      } finally {
-        setIsLoading(false);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-    };
 
+      const data: Coin[] = await response.json();
+      setCoins(data);
+      setError(null);
+    } catch (e: any) {
+      setError(e.message);
+      setCoins([]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Initial fetch
+  useEffect(() => {
     fetchData();
   }, []);
 
+  // Refetch function
+  const refetch = () => {
+    console.log("refetched");
+    fetchData();
+  };
+
   return (
-    <DataContext.Provider value={{ coins, isLoading, error }}>
+    <DataContext.Provider value={{ coins, isLoading, error, refetch }}>
       {children}
     </DataContext.Provider>
   );
