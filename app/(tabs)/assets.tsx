@@ -7,15 +7,7 @@ const Assets = () => {
   const textColor = colors.text;
   const backgroundColor = colors.background;
   return (
-    <View
-      style={{
-        flex: 1,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: backgroundColor,
-      }}
-    >
+    <View style={[styles.container, { backgroundColor: backgroundColor }]}>
       <Text style={{ color: textColor }}>Assets</Text>
     </View>
   );
@@ -23,4 +15,11 @@ const Assets = () => {
 
 export default Assets;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});

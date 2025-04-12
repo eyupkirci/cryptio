@@ -4,6 +4,7 @@ import { Coin } from "../context/dataContext";
 import { useTheme } from "@/hooks/useTheme";
 import Price from "./Price";
 import Name from "./Name";
+import Chart from "./Chart";
 
 export const DataListItem = ({ data }: { data: Coin }) => {
   const { colors } = useTheme();
@@ -11,18 +12,14 @@ export const DataListItem = ({ data }: { data: Coin }) => {
   const textColor = colors.text;
   return (
     <View style={[styles.container, { backgroundColor: backgroundColor }]}>
-      <View style={{ flex: 1, flexDirection: "row", gap: 10 }}>
-        <View
-          style={{
-            alignSelf: "center",
-          }}
-        >
+      <View style={styles.imageWrapper}>
+        <View style={styles.imageContainer}>
           <Image style={styles.image} source={{ uri: data.image }} />
         </View>
         <Name data={data} />
       </View>
       <View>
-        <Text style={{ color: textColor }}>Chart Here</Text>
+        <Chart data={data} />
       </View>
       <Price data={data} />
     </View>
@@ -36,6 +33,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     padding: 16,
+  },
+  imageWrapper: { flex: 1, flexDirection: "row", gap: 10 },
+  imageContainer: {
+    alignSelf: "center",
   },
   image: {
     width: 30,

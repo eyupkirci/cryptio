@@ -8,13 +8,12 @@ const Wallet = () => {
   const backgroundColor = colors.background;
   return (
     <View
-      style={{
-        flex: 1,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: backgroundColor,
-      }}
+      style={[
+        styles.container,
+        {
+          backgroundColor: backgroundColor,
+        },
+      ]}
     >
       <Text style={{ color: textColor }}>Wallet</Text>
     </View>
@@ -23,4 +22,11 @@ const Wallet = () => {
 
 export default Wallet;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});

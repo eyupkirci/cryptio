@@ -8,6 +8,7 @@ import {
   RefreshControl,
   Text,
   View,
+  StyleSheet,
 } from "react-native";
 import { useState, useCallback } from "react";
 
@@ -36,12 +37,7 @@ export default function Index() {
 
   if (isLoading) {
     return (
-      <View
-        style={[
-          { flex: 1, justifyContent: "center", alignItems: "center" },
-          { backgroundColor: backgroundColor },
-        ]}
-      >
+      <View style={[styles.container, { backgroundColor: backgroundColor }]}>
         <ActivityIndicator size="large" color="#0000ff" />
       </View>
     );
@@ -49,28 +45,14 @@ export default function Index() {
 
   if (error) {
     return (
-      <View
-        style={[
-          { flex: 1, justifyContent: "center", alignItems: "center" },
-          { backgroundColor: backgroundColor },
-        ]}
-      >
+      <View style={[styles.container, { backgroundColor: backgroundColor }]}>
         <Text style={{ color: textColor }}>Error: {error}</Text>
       </View>
     );
   }
 
   return (
-    <View
-      style={[
-        {
-          flex: 1,
-          justifyContent: "flex-start", // Align items at the top
-          alignItems: "center",
-        },
-        { backgroundColor: backgroundColor },
-      ]}
-    >
+    <View style={[styles.container, { backgroundColor: backgroundColor }]}>
       <Search onSearch={handleSearch} />
       <FlatList
         data={searchText ? filteredCoins : coins}
@@ -86,3 +68,12 @@ export default function Index() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
