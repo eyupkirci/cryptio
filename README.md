@@ -39,6 +39,7 @@ This project is a simple React Native application that displays an overview of c
   - `hooks`: For helper hooks.
   - `context`: state management.
   - `component`: For reusable UI components.
+  - `constant`: For constants.
 
 ## Bonus Features (Optional)
 
@@ -46,7 +47,8 @@ The following features can be added:
 
 - Implemented Search functionality to filter cryptocurrencies.
 - Dark mode toggle.
-- Simple price chart for each cryptocurrency.
+- Start testing with unit testing. An example is found `Header.test.tsx`
+- Chart component is still in development
 
 ## How to Run the App
 
@@ -69,10 +71,16 @@ The following features can be added:
    ```
 
 4. Run the app:
+
    ```bash
    yarn android
    ```
 
-## Extra
+5. Test the app:
+   ```bash
+   yarn test
+   ```
 
-- Chart place is shown in dataListItem.
+## Notes
+
+- Chart place is shown in dataListItem but still indevelopment
