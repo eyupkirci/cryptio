@@ -1,6 +1,7 @@
 import { useTheme } from "@/hooks/useTheme";
 import React, { useState } from "react";
 import { TextInput, View, StyleSheet } from "react-native";
+import Feather from "@expo/vector-icons/Feather";
 
 interface SearchProps {
   onSearch: (text: string) => void;
@@ -19,6 +20,14 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
 
   return (
     <View style={[styles.container, { backgroundColor: backgroundColor }]}>
+      {!searchText && (
+        <Feather
+          name="search"
+          size={24}
+          color={textColor}
+          style={{ position: "absolute", right: 20, top: 18 }}
+        />
+      )}
       <TextInput
         placeholderTextColor={textColor}
         style={[styles.input, { color: textColor, borderColor: textColor }]}
