@@ -1,3 +1,4 @@
+import useFetch from "@/hooks/useFetch";
 import React, { createContext, useState, useEffect, useContext } from "react";
 
 export interface Coin {
@@ -60,39 +61,13 @@ export const DataProvider: React.FC<DataProviderProps> = ({
   children,
 }): JSX.Element => {
   const [coins, setCoins] = useState<Coin[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  const { data, isLoading, error, refetch } = useFetch(API_URL);
 
-  const fetchData = async () => {
-    setIsLoading(true);
-    try {
-      const response = await fetch(API_URL);
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data: Coin[] = await response.json();
-      setCoins(data);
-      setError(null);
-    } catch (e: any) {
-      setError(e.message);
-      setCoins([]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  // Initial fetch
   useEffect(() => {
-    fetchData();
-  }, []);
-
-  // Refetch function
-  const refetch = () => {
-    console.log("refetched");
-    fetchData();
-  };
+    if (data) {
+      setCoins(data);
+    }
+  }, [data]);
 
   return (
     <DataContext.Provider value={{ coins, isLoading, error, refetch }}>
