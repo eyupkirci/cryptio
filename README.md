@@ -1,50 +1,78 @@
-# Welcome to your Expo app 👋
+# Cryptocurrency Price Overview App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This project is a simple React Native application that displays an overview of cryptocurrency prices using the CoinGecko API.
 
-## Get started
+## Features
 
-1. Install dependencies
+- Fetches cryptocurrency data from the CoinGecko API.
+- Displays a list of the top 10 cryptocurrencies by market cap.
+- Shows the following information for each cryptocurrency:
+  - Image
+  - Name
+  - Symbol
+  - Current price in USD
+  - 24-hour price change percentage
+- Has pull-to-refresh functionality.
+- Has dark / light mode functionality.
+- Has search functionality.
+
+## Technical Specifications
+
+### API Integration
+
+- Utilized the built-in `fetch` package to make API calls.
+- Implemented error handling for API requests to ensure a smooth user experience.
+
+### State Management
+
+- Used a state management solution of `Context` and `setState` together.
+
+### UI Components
+
+- Implemented granular design in ui components.
+- Custom list item component for utilizing flatlist.
+- Pull-to-refresh functionality for updating the list.
+
+### Code Structure
+
+- Organized into appropriate folders:
+  - `hooks`: For helper hooks.
+  - `context`: state management.
+  - `component`: For reusable UI components.
+
+## Bonus Features (Optional)
+
+The following features can be added:
+
+- Implemented Search functionality to filter cryptocurrencies.
+- Dark mode toggle.
+- Simple price chart for each cryptocurrency.
+
+## How to Run the App
+
+1. Clone the repository:
 
    ```bash
-   npm install
+   git clone <repository-link>
    ```
 
-2. Start the app
+2. Navigate to the project directory:
 
    ```bash
-    npx expo start
+   cd <project-directory>
    ```
 
-In the output, you'll find options to open the app in a
+3. Install dependencies:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+   ```bash
+   yarn
+   ```
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+4. Run the app:
+   ```bash
+   yarn android
+   ```
 
-## Get a fresh project
+## Extra
 
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- Chart place is shown in dataListItem.
