@@ -2,53 +2,44 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Coin } from "../context/dataContext";
 import { useTheme } from "@/hooks/useTheme";
+import Price from "./Price";
+import Name from "./Name";
 
 export const DataListItem = ({ data }: { data: Coin }) => {
-  const { theme, colors } = useTheme();
-
-  const textColor = colors.text;
+  const { colors } = useTheme();
   const backgroundColor = colors.background;
+  const textColor = colors.text;
   return (
-    <View
-      style={{
-        width: "100%",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        borderWidth: 1,
-        borderColor: "lightgray",
-        alignItems: "center",
-        padding: 10,
-      }}
-    >
+    <View style={[styles.container, { backgroundColor: backgroundColor }]}>
       <View style={{ flex: 1, flexDirection: "row", gap: 10 }}>
         <View
           style={{
             alignSelf: "center",
-            borderRadius: 50,
-            overflow: "hidden",
           }}
         >
-          <Image
-            style={{
-              width: 30,
-              height: 30,
-            }}
-            source={{ uri: data.image }}
-          />
+          <Image style={styles.image} source={{ uri: data.image }} />
         </View>
-        <View>
-          <Text style={{ color: textColor }}>{data.name}</Text>
-          <Text style={{ color: textColor }}>{data.symbol}</Text>
-        </View>
+        <Name data={data} />
       </View>
-      <View style={{ flex: 1, justifyContent: "flex-end" }}>
-        <Text style={{ textAlign: "right", color: textColor }}>
-          {data.current_price}
-        </Text>
-        <Text style={{ textAlign: "right", color: textColor }}>
-          {data.price_change_24h.toFixed(2)}
-        </Text>
+      <View>
+        <Text style={{ color: textColor }}>Chart Here</Text>
       </View>
+
+      <Price data={data} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 16,
+  },
+  image: {
+    width: 30,
+    height: 30,
+  },
+});

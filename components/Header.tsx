@@ -4,8 +4,6 @@ import { useTheme } from "../hooks/useTheme";
 
 const Header = () => {
   const { theme, toggleTheme, colors } = useTheme();
-  console.log("🚀 ~ Header ~ colors:", colors);
-  console.log("🚀 ~ Header ~ theme:", theme);
 
   return (
     <View style={[styles.header, { backgroundColor: colors.background }]}>
