@@ -23,7 +23,7 @@ const Price = ({ data }: { data: Coin }) => {
         ${data.current_price.toFixed(2)}
       </Text>
       <Text style={{ textAlign: "right", color: isHigh ? "green" : "red" }}>
-        {data.price_change_24h.toFixed(2)}
+        {data.price_change_24h.toFixed(2)}%
       </Text>
     </View>
   );
