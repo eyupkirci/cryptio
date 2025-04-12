@@ -24,7 +24,6 @@ export const DataListItem = ({ data }: { data: Coin }) => {
       <View>
         <Text style={{ color: textColor }}>Chart Here</Text>
       </View>
-
       <Price data={data} />
     </View>
   );
