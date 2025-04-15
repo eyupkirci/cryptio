@@ -6,12 +6,16 @@ import Svg, { Path } from "react-native-svg";
 const Chart = ({ data }: { data: Coin }) => {
   const width = 100;
   const height = 20;
+  const isHigh = data.price_change_24h >= 0;
 
   const dataPoints = [
-    { x: 0, y: data.low_24h },
+    { x: 0, y: isHigh ? data.low_24h : data.high_24h },
     { x: 1, y: data.low_24h + data.price_change_24h / 2 },
-    { x: 2, y: data.current_price },
-    { x: 3, y: data.high_24h },
+    { x: 2, y: data.low_24h + data.price_change_24h },
+    { x: 3, y: isHigh ? data.high_24h : data.low_24h },
+    { x: 4, y: data.high_24h - data.price_change_24h / 2 },
+    { x: 5, y: data.high_24h - data.price_change_24h },
+    { x: 6, y: data.current_price },
   ];
 
   const createLinePath = () => {
@@ -36,7 +40,12 @@ const Chart = ({ data }: { data: Coin }) => {
   return (
     <View style={[styles.container]}>
       <Svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
-        <Path d={d} fill="none" stroke="green" strokeWidth="1.5" />
+        <Path
+          d={d}
+          fill="none"
+          stroke={isHigh ? "green" : "red"}
+          strokeWidth="1.5"
+        />
       </Svg>
     </View>
   );
