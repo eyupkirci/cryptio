@@ -47,8 +47,9 @@ The following features can be added:
 
 - Implemented Search functionality to filter cryptocurrencies.
 - Dark mode toggle.
-- Start testing with unit testing. An example is found `Header.test.tsx`
-- Chart component is still in development
+- Start testing with unit testing. An example is found `Header.test.tsx` and `themeContext.test.tsx`.
+- Typography component for reusabilty in wording.
+- Chart component for 24 hours data
 
 ## How to Run the App
 
@@ -80,7 +81,3 @@ The following features can be added:
    ```bash
    yarn test
    ```
-
-## Notes
-
-- Chart place is shown in dataListItem but still indevelopment
